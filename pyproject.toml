@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jianghu-longcat-rpg"
+version = "0.1.0"
+description = "A wuxia text RPG demo powered by LongCat API and local ChromaDB."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "OpenAI Codex" }
+]
+dependencies = [
+  "chromadb>=1.0.0,<2",
+  "openai>=1.30.0,<2",
+  "pydantic>=2.7.0,<3",
+  "pydantic-settings>=2.2.1,<3",
+  "python-dotenv>=1.0.0,<2",
+  "rich>=13.7.0,<14",
+  "typer>=0.12.0,<1",
+]
+
+[project.scripts]
+jianghu-rpg = "jianghu_rpg.cli:app"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

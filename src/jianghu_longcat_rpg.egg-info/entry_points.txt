@@ -1,0 +1,2 @@
+[console_scripts]
+jianghu-rpg = jianghu_rpg.cli:app

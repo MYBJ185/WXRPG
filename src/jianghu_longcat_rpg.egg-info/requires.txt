@@ -1,0 +1,7 @@
+chromadb<2,>=1.0.0
+openai<2,>=1.30.0
+pydantic<3,>=2.7.0
+pydantic-settings<3,>=2.2.1
+python-dotenv<2,>=1.0.0
+rich<14,>=13.7.0
+typer<1,>=0.12.0

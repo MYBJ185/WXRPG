@@ -1,0 +1,159 @@
+[
+  {
+    "id": "iron_sword",
+    "name": "寒铁长剑",
+    "description": "江湖中最常见的直刃兵器，锋口稳，适合正面交锋。",
+    "category": "weapon",
+    "slot": "weapon",
+    "stackable": false,
+    "weight": 3.5,
+    "value": 35,
+    "stat_bonuses": {
+      "strength": 1
+    },
+    "tags": ["剑", "近战"]
+  },
+  {
+    "id": "hidden_blade",
+    "name": "袖里短锋",
+    "description": "藏在袖中的细刃，出手快而狠，更适合暗处决胜。",
+    "category": "weapon",
+    "slot": "weapon",
+    "stackable": false,
+    "weight": 1.2,
+    "value": 58,
+    "stat_bonuses": {
+      "dexterity": 2
+    },
+    "tags": ["暗器", "潜行"]
+  },
+  {
+    "id": "cloth_armor",
+    "name": "灰布护衣",
+    "description": "粗布夹层缝着薄皮，挡不住重刀，却能护住寒夜与轻伤。",
+    "category": "armor",
+    "slot": "armor",
+    "stackable": false,
+    "weight": 2.0,
+    "value": 20,
+    "stat_bonuses": {
+      "constitution": 1
+    },
+    "tags": ["轻甲"]
+  },
+  {
+    "id": "night_cloak",
+    "name": "夜行披风",
+    "description": "黑丝缎内衬吸光粉，披上后不易被街巷灯火照见。",
+    "category": "armor",
+    "slot": "armor",
+    "stackable": false,
+    "weight": 1.6,
+    "value": 80,
+    "stat_bonuses": {
+      "dexterity": 1,
+      "insight": 1
+    },
+    "tags": ["潜行", "外袍"]
+  },
+  {
+    "id": "ash_beads",
+    "name": "青灰念珠",
+    "description": "青灯寺俗家弟子佩珠，常在静坐中拂过指尖以稳心定气。",
+    "category": "accessory",
+    "slot": "accessory",
+    "stackable": false,
+    "weight": 0.3,
+    "value": 42,
+    "stat_bonuses": {
+      "spirit": 1
+    },
+    "tags": ["佛门", "静心"]
+  },
+  {
+    "id": "river_token",
+    "name": "青麓渡水牌",
+    "description": "青麓渡暗码水牌，持牌者可在封渡时借偏舟通行。",
+    "category": "quest",
+    "stackable": false,
+    "weight": 0.1,
+    "value": 0,
+    "tags": ["渡口", "通行"]
+  },
+  {
+    "id": "burnt_jade",
+    "name": "焦玉残佩",
+    "description": "被火烤裂的古玉，纹路像半枚龙睛，是寒溪村被灭的唯一旧证。",
+    "category": "quest",
+    "stackable": false,
+    "weight": 0.2,
+    "value": 0,
+    "tags": ["寒溪村", "证物"]
+  },
+  {
+    "id": "dragon_map_fragment",
+    "name": "龙渊残图",
+    "description": "龙渊地宫线路图的半截，边缘留有沧浪盟旧式暗记。",
+    "category": "quest",
+    "stackable": false,
+    "weight": 0.1,
+    "value": 0,
+    "tags": ["地宫", "地图"]
+  },
+  {
+    "id": "dragon_bone_key",
+    "name": "龙骨钥",
+    "description": "以古兽椎骨雕成的机关钥匙，是开启地宫内环的唯一凭证。",
+    "category": "quest",
+    "stackable": false,
+    "weight": 0.4,
+    "value": 0,
+    "tags": ["地宫", "机关"]
+  },
+  {
+    "id": "black_mask",
+    "name": "无相黑面",
+    "description": "无相司外勤所用薄面，面层浸过药，可混入夜色与人群。",
+    "category": "quest",
+    "stackable": false,
+    "weight": 0.2,
+    "value": 0,
+    "tags": ["无相司", "潜入"]
+  },
+  {
+    "id": "healing_pill",
+    "name": "回春丸",
+    "description": "草药与鹿血炼成的小丸，吞服后能迅速稳住伤势。",
+    "category": "consumable",
+    "stackable": true,
+    "max_stack": 20,
+    "weight": 0.1,
+    "value": 12,
+    "heal": 8,
+    "tags": ["治疗"]
+  },
+  {
+    "id": "spirit_tonic",
+    "name": "凝息散",
+    "description": "药末辛苦，能逼散心火、回引真气，是夜战后的良药。",
+    "category": "consumable",
+    "stackable": true,
+    "max_stack": 20,
+    "weight": 0.1,
+    "value": 15,
+    "qi_restore": 6,
+    "tags": ["真气", "恢复"]
+  },
+  {
+    "id": "smoke_pellet",
+    "name": "雾隐弹",
+    "description": "捏碎后爆出苦灰细烟，短时间足以遮断视线。",
+    "category": "consumable",
+    "stackable": true,
+    "max_stack": 10,
+    "weight": 0.2,
+    "value": 18,
+    "qi_restore": 2,
+    "tags": ["脱战", "潜行"]
+  }
+]

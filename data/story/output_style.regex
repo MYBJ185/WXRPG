@@ -1,0 +1,7 @@
+# Output formatting regex rules for narrative rendering.
+# Format: KEY=REGEX
+
+PARAGRAPH_SPLIT=\n\s*\n+
+DIALOGUE_QUOTED=[“"「『][^”"」』\n]{1,120}[”"」』]
+DIALOGUE_SPOKEN_LINE=(^|\n)([\u4e00-\u9fffA-Za-z0-9_·]{1,16}[：:][^\n]{2,180})
+DIALOGUE_TURN=[\u4e00-\u9fffA-Za-z0-9_·]{1,16}[：:](?:(?![\u4e00-\u9fffA-Za-z0-9_·]{1,16}[：:]).){2,220}

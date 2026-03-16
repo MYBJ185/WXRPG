@@ -1,0 +1,734 @@
+[
+  {
+    "id": "hanxi_ashes",
+    "chapter": "第一幕·灰烬启程",
+    "title": "寒溪村余烬",
+    "location": "寒溪村",
+    "body": "导演提示：村火未熄，井栏裂开，风里有药灰和铁腥。请突出幸存者创伤、夜色压迫感，以及“谁在灭口”的悬疑张力。",
+    "tags": ["寒溪村", "灭村", "线索"],
+    "choices": [
+      {
+        "id": "inspect_old_well",
+        "label": "勘验古井裂痕",
+        "description": "沿井口的抓痕与焦黑药渍追查凶手留下的痕迹。",
+        "challenge": {
+          "stat": "insight",
+          "dc": 12,
+          "success_node": "old_well_clue",
+          "failure_node": "canglang_scout"
+        },
+        "success_effects": {
+          "xp": 18,
+          "set_flags": ["found_well_trace"],
+          "rumors": ["寒溪村的井下曾藏过第二半焦玉。"]
+        },
+        "failure_effects": {
+          "xp": 8,
+          "hp": -2,
+          "rumors": ["黑面人焚村前似乎在井边停留过。"]
+        },
+        "success_text": "你在井沿下摸到被火熔过的机关纹，像龙渊旧式。",
+        "failure_text": "灰烬塌落，你只抓到半截鞋钉痕，线索不完整。"
+      },
+      {
+        "id": "chase_black_mask",
+        "label": "追逐黑面余党",
+        "description": "趁夜追入林坡，赌一次短兵相接的机会。",
+        "challenge": {
+          "stat": "dexterity",
+          "dc": 13,
+          "success_node": "river_night_dock",
+          "failure_node": "wuxiang_intercept"
+        },
+        "success_effects": {
+          "xp": 20,
+          "add_items": {
+            "black_mask": 1
+          },
+          "set_flags": ["got_black_mask"],
+          "reputations": {
+            "江湖声望": 1
+          }
+        },
+        "failure_effects": {
+          "xp": 10,
+          "hp": -3,
+          "set_flags": ["wuxiang_marked"]
+        },
+        "success_text": "你从对手脸上扯下黑面，线缝里藏着无相司暗号。",
+        "failure_text": "你被反引到山道封口，暗哨已先一步围来。"
+      },
+      {
+        "id": "bury_villagers",
+        "label": "先葬同村亡者",
+        "description": "在天亮前立木牌、收敛尸骨，给自己留一口气。",
+        "next_node": "canglang_scout",
+        "effects": {
+          "xp": 12,
+          "qi": 2,
+          "reputations": {
+            "青灯寺": 2,
+            "江湖声望": 1
+          },
+          "set_flags": ["buried_hanxi_dead"]
+        }
+      }
+    ],
+    "auto_save": true,
+    "ending": false
+  },
+  {
+    "id": "old_well_clue",
+    "chapter": "第一幕·灰烬启程",
+    "title": "枯井暗纹",
+    "location": "寒溪村",
+    "body": "导演提示：井底回音像旧机关喘息，焦玉与照骨图的联系初露。请让玩家感到“真相近在咫尺但代价更高”。",
+    "tags": ["寒溪村", "焦玉", "照骨图"],
+    "choices": [
+      {
+        "id": "recover_jade",
+        "label": "取出井下残玉",
+        "description": "以布绳探井，冒险取回被灰水黏住的焦玉残纹。",
+        "requirements": {
+          "flags_not": ["extra_jade_taken"]
+        },
+        "next_node": "river_night_dock",
+        "effects": {
+          "xp": 15,
+          "add_items": {
+            "burnt_jade": 1
+          },
+          "set_flags": ["extra_jade_taken", "jade_resonance"],
+          "rumors": ["焦玉会被龙渊心炉识别为执灯凭证。"]
+        }
+      },
+      {
+        "id": "track_to_dock",
+        "label": "顺脚印直追青麓渡",
+        "description": "不再耽搁，沿着泥沟里的舟钉痕一路追到渡口。",
+        "next_node": "river_night_dock",
+        "effects": {
+          "xp": 10,
+          "time_advance": 2
+        }
+      },
+      {
+        "id": "leave_message",
+        "label": "给沧浪盟留讯",
+        "description": "在井栏刻下盟中暗记，召来会认旧义的人。",
+        "next_node": "canglang_scout",
+        "effects": {
+          "xp": 10,
+          "reputations": {
+            "沧浪盟": 2
+          },
+          "set_flags": ["contact_canglang"]
+        }
+      }
+    ],
+    "auto_save": true,
+    "ending": false
+  },
+  {
+    "id": "canglang_scout",
+    "chapter": "第一幕·灰烬启程",
+    "title": "旧盟来客",
+    "location": "寒溪村外坡",
+    "body": "导演提示：沧浪盟哨探递来半真半假的援手。请强调阵营之间的互相利用，而非单纯善恶。",
+    "tags": ["沧浪盟", "结盟", "试探"],
+    "choices": [
+      {
+        "id": "accept_boat_help",
+        "label": "借盟船夜渡",
+        "description": "接受护送，先离开灭口地带再图后计。",
+        "next_node": "river_night_dock",
+        "effects": {
+          "xp": 12,
+          "reputations": {
+            "沧浪盟": 2
+          },
+          "faction_states": {
+            "沧浪盟": "拉拢"
+          },
+          "rumors": ["沧浪盟内部有人想独占龙渊。"]
+        }
+      },
+      {
+        "id": "refuse_and_shadow",
+        "label": "拒绝结盟并反跟踪",
+        "description": "表面不合作，暗里顺着哨探摸到他们的中转点。",
+        "challenge": {
+          "stat": "insight",
+          "dc": 14,
+          "success_node": "moon_market",
+          "failure_node": "wuxiang_intercept"
+        },
+        "success_effects": {
+          "xp": 22,
+          "set_flags": ["know_moon_market_route"],
+          "reputations": {
+            "江湖声望": 1
+          }
+        },
+        "failure_effects": {
+          "xp": 8,
+          "set_flags": ["wuxiang_marked"]
+        }
+      },
+      {
+        "id": "ask_about_qingdeng",
+        "label": "打听青灯寺门路",
+        "description": "改走寺方线，寻求“封渊派”的旧图验证。",
+        "next_node": "qingdeng_gate",
+        "effects": {
+          "xp": 12,
+          "reputations": {
+            "青灯寺": 1
+          },
+          "set_flags": ["seek_qingdeng"]
+        }
+      }
+    ],
+    "auto_save": true,
+    "ending": false
+  },
+  {
+    "id": "river_night_dock",
+    "chapter": "第二幕·暗河与月市",
+    "title": "青麓渡封灯夜",
+    "location": "青麓渡",
+    "body": "导演提示：渡口官巡与私牙共治，任何一句话都可能被卖两次。请写出湿冷水汽、潜伏交易与人命价码。",
+    "tags": ["青麓渡", "封港", "潜行"],
+    "choices": [
+      {
+        "id": "bribe_boatman",
+        "label": "贿赂摆渡人",
+        "description": "用银钱买一条最安静的水路。",
+        "requirements": {
+          "min_silver": 20
+        },
+        "next_node": "moon_market",
+        "effects": {
+          "xp": 14,
+          "silver": -20,
+          "set_flags": ["paid_dock_pass"]
+        }
+      },
+      {
+        "id": "sneak_past_patrol",
+        "label": "翻仓潜渡",
+        "description": "从盐仓背风面潜行，避开官巡和码头暗哨。",
+        "challenge": {
+          "stat": "dexterity",
+          "dc": 14,
+          "success_node": "moon_market",
+          "failure_node": "wuxiang_intercept"
+        },
+        "success_effects": {
+          "xp": 20,
+          "reputations": {
+            "江湖声望": 1
+          }
+        },
+        "failure_effects": {
+          "xp": 9,
+          "hp": -2,
+          "set_flags": ["wuxiang_marked"]
+        }
+      },
+      {
+        "id": "seek_monk_contact",
+        "label": "联络青灯寺行脚僧",
+        "description": "放出寺中暗语，换一次照骨图的口头校验。",
+        "next_node": "qingdeng_gate",
+        "effects": {
+          "xp": 12,
+          "reputations": {
+            "青灯寺": 2
+          },
+          "rumors": ["照骨图并非地图，而是经脉与机关的同构图。"]
+        }
+      }
+    ],
+    "auto_save": true,
+    "ending": false
+  },
+  {
+    "id": "wuxiang_intercept",
+    "chapter": "第二幕·暗河与月市",
+    "title": "黑面封路",
+    "location": "青麓渡外街",
+    "body": "导演提示：无相司不急着杀人，他们更想把“可用的人”编进秩序。请写心理压迫与谈判博弈。",
+    "tags": ["无相司", "黑面", "审问"],
+    "choices": [
+      {
+        "id": "wear_mask_bluff",
+        "label": "戴黑面混关",
+        "description": "以截获的黑面伪装身份，赌一次暗号应对。",
+        "requirements": {
+          "items": {
+            "black_mask": 1
+          }
+        },
+        "challenge": {
+          "stat": "charisma",
+          "dc": 13,
+          "success_node": "moon_market",
+          "failure_node": "prison_cell"
+        },
+        "success_effects": {
+          "xp": 24,
+          "reputations": {
+            "无相司": 1
+          },
+          "set_flags": ["fooled_wuxiang_once"]
+        },
+        "failure_effects": {
+          "xp": 8,
+          "hp": -2
+        }
+      },
+      {
+        "id": "trade_information",
+        "label": "以情报换路",
+        "description": "给出寒溪村灭口夜的片段线索，换取暂时放行。",
+        "next_node": "qingdeng_gate",
+        "effects": {
+          "xp": 14,
+          "reputations": {
+            "无相司": 2,
+            "沧浪盟": -1
+          },
+          "set_flags": ["dealt_with_wuxiang"],
+          "rumors": ["裴照白已把你列为“可控变量”。"]
+        }
+      },
+      {
+        "id": "break_through",
+        "label": "强闯封锁",
+        "description": "拔兵刃硬闯，承担被全线通缉的代价。",
+        "challenge": {
+          "stat": "strength",
+          "dc": 15,
+          "success_node": "moon_market",
+          "failure_node": "prison_cell"
+        },
+        "success_effects": {
+          "xp": 20,
+          "hp": -4,
+          "reputations": {
+            "江湖声望": 2,
+            "无相司": -2
+          }
+        },
+        "failure_effects": {
+          "xp": 8,
+          "hp": -5
+        }
+      }
+    ],
+    "auto_save": true,
+    "ending": false
+  },
+  {
+    "id": "prison_cell",
+    "chapter": "第二幕·暗河与月市",
+    "title": "铁窗短夜",
+    "location": "无相司临时牢",
+    "body": "导演提示：不是“绝境”，而是一次重估立场的喘息。请突出灯影、铁锈和人物内心的选择压力。",
+    "tags": ["无相司", "牢狱", "转机"],
+    "choices": [
+      {
+        "id": "meditate_and_break",
+        "label": "静息破锁",
+        "description": "以内息稳住伤势，寻找锁簧最薄的一点。",
+        "challenge": {
+          "stat": "spirit",
+          "dc": 13,
+          "success_node": "qingdeng_gate",
+          "failure_node": "moon_market"
+        },
+        "success_effects": {
+          "xp": 18,
+          "qi": 3,
+          "set_flags": ["prison_break_clean"]
+        },
+        "failure_effects": {
+          "xp": 10,
+          "hp": -2
+        }
+      },
+      {
+        "id": "buy_freedom",
+        "label": "买通狱卒",
+        "description": "把最后的银子压在一个不可靠的人身上。",
+        "requirements": {
+          "min_silver": 30
+        },
+        "next_node": "moon_market",
+        "effects": {
+          "xp": 10,
+          "silver": -30,
+          "set_flags": ["bribed_prison_guard"]
+        }
+      },
+      {
+        "id": "send_canglang_signal",
+        "label": "发沧浪盟暗号",
+        "description": "赌盟里旧义还在，愿不愿救一个麻烦。",
+        "requirements": {
+          "min_reputation": {
+            "沧浪盟": 2
+          }
+        },
+        "next_node": "moon_market",
+        "effects": {
+          "xp": 12,
+          "reputations": {
+            "沧浪盟": 1
+          }
+        }
+      }
+    ],
+    "auto_save": true,
+    "ending": false
+  },
+  {
+    "id": "qingdeng_gate",
+    "chapter": "第二幕·暗河与月市",
+    "title": "青灯寺山门",
+    "location": "青灯寺",
+    "body": "导演提示：寺方不站队，但要测试你是否会被龙渊放大的执念吞没。请写克制、留白与试炼感。",
+    "tags": ["青灯寺", "照骨图", "试炼"],
+    "choices": [
+      {
+        "id": "accept_temple_trial",
+        "label": "受戒试心",
+        "description": "接受寺中试炼，以心性换取照骨图线索。",
+        "challenge": {
+          "stat": "spirit",
+          "dc": 14,
+          "success_node": "longyuan_outer",
+          "failure_node": "moon_market"
+        },
+        "success_effects": {
+          "xp": 24,
+          "reputations": {
+            "青灯寺": 3
+          },
+          "set_world_flags": ["qingdeng_guidance"],
+          "unlock_talents": ["龙吟诀"]
+        },
+        "failure_effects": {
+          "xp": 10,
+          "reputations": {
+            "青灯寺": -1
+          }
+        }
+      },
+      {
+        "id": "steal_map_rubbing",
+        "label": "窃取照骨摹本",
+        "description": "趁夜取图，走最短的捷径。",
+        "challenge": {
+          "stat": "dexterity",
+          "dc": 16,
+          "success_node": "moon_market",
+          "failure_node": "wuxiang_intercept"
+        },
+        "success_effects": {
+          "xp": 16,
+          "set_flags": ["stole_zhaogu_copy"],
+          "reputations": {
+            "青灯寺": -3
+          }
+        },
+        "failure_effects": {
+          "xp": 6,
+          "hp": -2
+        }
+      },
+      {
+        "id": "cooperate_with_temple",
+        "label": "与寺方共议封渊",
+        "description": "承诺先封后争，争取正式支持。",
+        "next_node": "longyuan_outer",
+        "effects": {
+          "xp": 16,
+          "reputations": {
+            "青灯寺": 2
+          },
+          "set_world_flags": ["plan_to_seal_longyuan"],
+          "faction_states": {
+            "青灯寺": "协作"
+          }
+        }
+      }
+    ],
+    "auto_save": true,
+    "ending": false
+  },
+  {
+    "id": "moon_market",
+    "chapter": "第二幕·暗河与月市",
+    "title": "月市开门",
+    "location": "月市",
+    "body": "导演提示：月市买卖的不只是货，更是身份与命。请写“人人都在交易秘密”的危险繁华。",
+    "tags": ["月市", "黑市", "龙骨钥"],
+    "choices": [
+      {
+        "id": "buy_dragon_key",
+        "label": "重金购龙骨钥",
+        "description": "直接拿钱换门票，代价是暴露自己急于入渊。",
+        "requirements": {
+          "min_silver": 40
+        },
+        "next_node": "longyuan_outer",
+        "effects": {
+          "xp": 18,
+          "silver": -40,
+          "add_items": {
+            "dragon_bone_key": 1
+          },
+          "set_flags": ["bought_key_in_market"]
+        }
+      },
+      {
+        "id": "trade_with_burnt_jade",
+        "label": "以焦玉换线",
+        "description": "亮出焦玉残纹，从牙人口中换出地宫外环路线。",
+        "requirements": {
+          "items": {
+            "burnt_jade": 1
+          }
+        },
+        "next_node": "longyuan_outer",
+        "effects": {
+          "xp": 20,
+          "set_flags": ["jade_route_known"],
+          "rumors": ["龙渊外环每更会错开一次水门。"]
+        }
+      },
+      {
+        "id": "hunt_key_by_force",
+        "label": "劫钥离场",
+        "description": "在灯灭一瞬抢钥突围，换取最快但最险的通路。",
+        "challenge": {
+          "stat": "strength",
+          "dc": 15,
+          "success_node": "longyuan_outer",
+          "failure_node": "wuxiang_intercept"
+        },
+        "success_effects": {
+          "xp": 22,
+          "add_items": {
+            "dragon_bone_key": 1
+          },
+          "reputations": {
+            "江湖声望": 2,
+            "无相司": -1
+          }
+        },
+        "failure_effects": {
+          "xp": 8,
+          "hp": -3
+        }
+      }
+    ],
+    "auto_save": true,
+    "ending": false
+  },
+  {
+    "id": "longyuan_outer",
+    "chapter": "第三幕·龙渊启封",
+    "title": "龙渊地宫外环",
+    "location": "龙渊地宫",
+    "body": "导演提示：机关像活物，地脉在脚下挪动。请让玩家感到每一步都在回答“你为何而来”。",
+    "tags": ["龙渊", "地宫", "机关"],
+    "choices": [
+      {
+        "id": "open_by_key",
+        "label": "以龙骨钥启门",
+        "description": "按古制开门，尽量减少地宫反噬。",
+        "requirements": {
+          "items": {
+            "dragon_bone_key": 1
+          }
+        },
+        "next_node": "heart_furnace",
+        "effects": {
+          "xp": 20,
+          "set_world_flags": ["outer_ring_opened"]
+        }
+      },
+      {
+        "id": "force_open_gate",
+        "label": "强破机关门",
+        "description": "不等钥引，直接以力破阵。",
+        "challenge": {
+          "stat": "strength",
+          "dc": 17,
+          "success_node": "heart_furnace",
+          "failure_node": "ending_collapse"
+        },
+        "success_effects": {
+          "xp": 24,
+          "hp": -5,
+          "set_world_flags": ["outer_ring_broken"]
+        },
+        "failure_effects": {
+          "xp": 6,
+          "hp": -8
+        }
+      },
+      {
+        "id": "retreat_for_now",
+        "label": "暂退封门",
+        "description": "把路线和证据带回江湖，改日再决。",
+        "next_node": "ending_seal",
+        "effects": {
+          "xp": 14,
+          "reputations": {
+            "江湖声望": 2
+          },
+          "set_world_flags": ["longyuan_deferred"]
+        }
+      }
+    ],
+    "auto_save": true,
+    "ending": false
+  },
+  {
+    "id": "heart_furnace",
+    "chapter": "第三幕·龙渊启封",
+    "title": "龙髓心炉",
+    "location": "龙渊地宫",
+    "body": "导演提示：最终抉择不是“赢输”，而是“你愿意让什么被放大”。请强化因果、代价与江湖余波。",
+    "tags": ["龙髓心炉", "终局", "抉择"],
+    "choices": [
+      {
+        "id": "destroy_furnace",
+        "label": "断炉灭渊",
+        "description": "摧毁心炉，让任何人都无法再借其改写秩序。",
+        "challenge": {
+          "stat": "spirit",
+          "dc": 16,
+          "success_node": "ending_dawn",
+          "failure_node": "ending_ashen"
+        },
+        "success_effects": {
+          "xp": 36,
+          "set_world_flags": ["heart_furnace_destroyed"],
+          "reputations": {
+            "青灯寺": 2,
+            "无相司": -2
+          }
+        },
+        "failure_effects": {
+          "xp": 12,
+          "hp": -6
+        }
+      },
+      {
+        "id": "take_control",
+        "label": "执灯控炉",
+        "description": "接受心炉识别，尝试把力量纳入自己的秩序。",
+        "challenge": {
+          "stat": "insight",
+          "dc": 15,
+          "success_node": "ending_hegemon",
+          "failure_node": "ending_ashen"
+        },
+        "success_effects": {
+          "xp": 36,
+          "set_world_flags": ["new_lampbearer_rises"],
+          "reputations": {
+            "无相司": 2,
+            "沧浪盟": 1
+          }
+        },
+        "failure_effects": {
+          "xp": 10,
+          "hp": -8,
+          "qi": -6
+        }
+      },
+      {
+        "id": "seal_and_leave",
+        "label": "封炉离场",
+        "description": "按照骨图闭锁心炉，把钥与图分开封存。",
+        "requirements": {
+          "min_reputation": {
+            "青灯寺": 2
+          }
+        },
+        "next_node": "ending_seal",
+        "effects": {
+          "xp": 30,
+          "set_world_flags": ["heart_furnace_sealed"],
+          "reputations": {
+            "青灯寺": 2,
+            "江湖声望": 2
+          }
+        }
+      }
+    ],
+    "auto_save": true,
+    "ending": false
+  },
+  {
+    "id": "ending_dawn",
+    "chapter": "终章",
+    "title": "晨光照灰",
+    "location": "镜山山麓",
+    "body": "导演提示：给出“代价后的清晨”。不是圆满，而是可继续活下去的秩序。",
+    "tags": ["结局", "重建"],
+    "choices": [],
+    "auto_save": true,
+    "ending": true
+  },
+  {
+    "id": "ending_hegemon",
+    "chapter": "终章",
+    "title": "新执灯人",
+    "location": "龙渊地宫",
+    "body": "导演提示：主角赢得了力量，也被力量重写。请让结局兼具胜利感与寒意。",
+    "tags": ["结局", "权力"],
+    "choices": [],
+    "auto_save": true,
+    "ending": true
+  },
+  {
+    "id": "ending_seal",
+    "chapter": "终章",
+    "title": "封渊余火",
+    "location": "青灯寺",
+    "body": "导演提示：主角选择把答案留给未来。强调克制、留白和未竟江湖。",
+    "tags": ["结局", "封印"],
+    "choices": [],
+    "auto_save": true,
+    "ending": true
+  },
+  {
+    "id": "ending_ashen",
+    "chapter": "终章",
+    "title": "心炉反噬",
+    "location": "龙渊地宫",
+    "body": "导演提示：执念被放大后的失败结局。请写灾变后果与角色最后的清醒一瞬。",
+    "tags": ["结局", "反噬"],
+    "choices": [],
+    "auto_save": true,
+    "ending": true
+  },
+  {
+    "id": "ending_collapse",
+    "chapter": "终章",
+    "title": "塌门葬影",
+    "location": "龙渊地宫外环",
+    "body": "导演提示：外环崩塌，故事戛然而止。强调“急于求成”的代价。",
+    "tags": ["结局", "崩塌"],
+    "choices": [],
+    "auto_save": true,
+    "ending": true
+  }
+]
